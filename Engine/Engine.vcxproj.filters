@@ -92,7 +92,7 @@
     <ClInclude Include="ThirdParty\stb\stb_image.h">
       <Filter>Stb</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry.h">
+    <ClInclude Include="Code\Geometry.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

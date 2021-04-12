@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "Geometry.h"
 #include "platform.h"
 #include <glad/glad.h>
 
@@ -14,11 +15,6 @@ typedef glm::ivec2 ivec2;
 typedef glm::ivec3 ivec3;
 typedef glm::ivec4 ivec4;
 
-struct VertexV3V2
-{
-    glm::vec3 pos;
-    glm::vec2 uv;
-};
 
 struct Image
 {
@@ -46,18 +42,6 @@ enum Mode
 {
     Mode_TexturedQuad,
     Mode_Count
-};
-
-const VertexV3V2 vertices[] = {
-        {glm::vec3(-0.5,-0.5,0.0), glm::vec2(0.0,0.0)},
-        {glm::vec3(0.5,-0.5,0.0), glm::vec2(1.0,0.0)},
-        {glm::vec3(0.5,0.5,0.0), glm::vec2(1.0,0.0)},
-        {glm::vec3(-0.5,0.5,0.0), glm::vec2(0.0,1.0)}
-};
-
-const u16 indices[] = {
-    0,1,2,
-    1,2,3
 };
 
 struct App

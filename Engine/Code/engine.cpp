@@ -189,7 +189,6 @@ void Init(App* app)
     app->mode = Mode::Mode_TexturedQuad;
 
     
-
     // --- Geometry ---
     glGenBuffers(1, &app->embeddedVertices);
     glBindBuffer(GL_ARRAY_BUFFER, app->embeddedVertices);

@@ -8,6 +8,7 @@
 #include "platform.h"
 #include <glad/glad.h>
 
+
 typedef glm::vec2  vec2;
 typedef glm::vec3  vec3;
 typedef glm::vec4  vec4;
@@ -35,12 +36,14 @@ struct Program
     GLuint             handle;
     std::string        filepath;
     std::string        programName;
-    u64                lastWriteTimestamp; // What is this for?
+    u64                lastWriteTimestamp; // What is this for
+    VertexShaderLayout vertexInputLayout;
 };
 
-enum Mode
+enum class Mode
 {
-    Mode_TexturedQuad,
+    Mode_TexturedQuad=0,
+    Mode_Mesh,
     Mode_Count
 };
 
@@ -59,6 +62,10 @@ struct App
 
     ivec2 displaySize;
 
+    //Component arrays
+    std::vector<Material>   materials;
+    std::vector<Mesh>       meshes;
+    std::vector<Model>      models;
     std::vector<Texture>  textures;
     std::vector<Program>  programs;
 
@@ -75,6 +82,12 @@ struct App
     // Mode
     Mode mode;
 
+
+    u32 texturedMeshProgramIdx;
+
+    u32 model;
+    u32 texturedMeshProgram_uTexture;
+
     // Embedded geometry (in-editor simple meshes such as
     // a screen filling quad, a cube, a sphere...)
     GLuint embeddedVertices;
@@ -87,6 +100,8 @@ struct App
     GLuint vao;
 };
 
+u32 LoadTexture2D(App* app, const char* filepath);
+
 void Init(App* app);
 
 void Gui(App* app);
@@ -95,3 +110,6 @@ void Update(App* app);
 
 void Render(App* app);
 
+void OnGLError(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
+GLuint FindVAO(Mesh& mesh, u32 submeshIndex, const Program& program);
